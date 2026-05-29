@@ -11,9 +11,7 @@
 	
 ## Circuit Diagram:
 
- 
-
-
+ <img width="1036" height="597" alt="image" src="https://github.com/user-attachments/assets/792514be-730e-40ae-9ce3-b7785c14e6aa" />
 
 
 ## Theory :
@@ -57,10 +55,54 @@ Step 7: Save Your Work
 •	Save the Circuit: Click "Save" to keep your circuit design and code for future use.
 
 ## Program:
+```
+// C++ code
+//
 
+int red_LED_PIN = 11;
+int green_LED_PIN = 9;
+int buzzer = 6;
+int smoke_detector = A0;
+int safety_lim = 60; 
+
+void setup()
+{
+  pinMode(red_LED_PIN, OUTPUT);
+  pinMode(green_LED_PIN, OUTPUT);
+  pinMode(buzzer, OUTPUT);
+  pinMode(smoke_detector, INPUT);
+  Serial.begin(9600); 
+}
+
+void loop()
+{
+  int sensor_read = analogRead(smoke_detector); 
+  	
+
+  Serial.print("Smoke Density: ");
+  Serial.println(sensor_read);
+  
+  if (sensor_read > safety_lim)
+ 
+  {
+	analogWrite(red_LED_PIN,255);
+    analogWrite(green_LED_PIN, 0);
+    tone(buzzer,500, 100);  
+  }
+  else
+  {
+    analogWrite(green_LED_PIN, 255);
+    analogWrite(red_LED_PIN,0);
+    noTone(buzzer); 
+  }
+  delay(50);
+}
+```
 ## Output:
+<img width="940" height="476" alt="image" src="https://github.com/user-attachments/assets/a81ab49c-17af-4e03-ada2-4a12fd96cb7e" />
 
-   
+<img width="940" height="537" alt="image" src="https://github.com/user-attachments/assets/5e6fc149-08ef-44f8-9b3c-a827354946ed" />
 
 ## Result:
+Thus, Gas Leak detection using Arduino Uno was successfully implemented using TinkerCad
 
